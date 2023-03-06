@@ -7,7 +7,12 @@ export class productService {
         const response = await Axios.get<IProduct[]>('products', {
             params: {
                 ...(sort && { sort }),
-                ...(order && { order }),
+
+
+
+
+
+                ...(order && { order })
             },
         });
 
