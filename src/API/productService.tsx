@@ -8,17 +8,13 @@ export class productService {
             params: {
                 ...(sort && { sort }),
 
-
-
-
-
-                ...(order && { order })
+                ...(order && { order }),
             },
         });
 
         return response;
     }
-    
+
     static async createProduct(product: IProduct): Promise<AxiosResponse> {
         const response = await Axios.post<IProduct>('products', product);
 

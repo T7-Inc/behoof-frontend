@@ -30,13 +30,17 @@
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run dev\"",
     "dev": "react-scripts start",
-    "lint": "eslint --cache --ext .js,.tsx,.tx src",
+    "lint": "eslint --fix --ext .ts,.tsx ./src",
     "lint:fix": "npm run lint -- --fix",
-    "prepare": "husky install",
     "server": "json-server -w src/server/db.json -p3001",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npm run lint"
+    ]
   },
   "eslintConfig": {
     "extends": [
