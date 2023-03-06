@@ -1,0 +1,51 @@
+.formMain {
+  position: relative;
+
+  .popup {
+    box-shadow: 0 0 10px black;
+    position: absolute;
+    min-height: 550px;
+    width: 500px;
+    top: 150px;
+    right: 100px;
+    background: white;
+    opacity: 90%;
+    border-radius: 50px;
+
+    .plus {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    form {
+      padding: 30px;
+      @extend %df;
+      gap: 20px;
+
+      .error {
+        display: flex;
+        flex-wrap: wrap;
+
+        p {
+          padding-left: 20px;
+          color: red;
+        }
+      }
+
+      button {
+        height: 30px;
+        width: 50px;
+        background: none;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
