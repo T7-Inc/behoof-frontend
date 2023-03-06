@@ -1,25 +1,22 @@
 import React from 'react';
 import { HomePage } from '../pages';
-
-export enum RouteName {
-    HOME = '/home',
-}
+import { Routes } from '../constans/Routes.enum';
 
 interface IRoute {
-    path: RouteName,
+    path: Routes,
     element: React.ReactNode
 }
 
 export const publicRoutes: IRoute[] = [
     {
-        path: RouteName.HOME,
+        path: Routes.HOME,
         element: <HomePage/>,
     },
 ];
 
 export const privateRoutes: IRoute[] = [
     {
-        path: RouteName.HOME,
+        path: Routes.HOME,
         element: <HomePage/>,
     },
 ];
