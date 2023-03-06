@@ -13,9 +13,13 @@
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.5",
     "@types/react-stars": "^2.2.1",
+    "autoprefixer": "^10.4.13",
     "axios": "^0.27.2",
     "concurrently": "^7.6.0",
+    "flowbite": "^1.6.3",
+    "flowbite-react": "^0.4.1",
     "node-sass": "^4.11.0",
+    "postcss": "^8.4.21",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-hook-form": "^7.31.2",
@@ -28,8 +32,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run dev\"",
-    "dev": "react-scripts start",
+    "start": "react-scripts start",
     "lint": "eslint --fix --ext .ts,.tsx ./src",
     "lint:fix": "npm run lint -- --fix",
     "server": "json-server -w src/server/db.json -p3001",
