@@ -128,7 +128,7 @@ const HomePage: FC = () => (
             <Carousel slideInterval={5000}>
                 <div className='flex h-full items-center bg-rose-400 px-20 text-white justify-between'>
                     <div className='w-2/4'>
-                        <h1 className='text-xl md:text-3xl lg:text-5xl font-bold'>
+                        <h1 className='text-xl md:text-3xl mb-2 lg:text-5xl font-bold'>
                             Best sales and discounts
                         </h1>
                         <span className='text-lg md:text-2xl lg:text-3xl'>
@@ -144,7 +144,7 @@ const HomePage: FC = () => (
                 </div>
                 <div className='flex h-full items-center bg-gray-500 bg-cyan-700 px-20 text-white'>
                     <div className='w-2/4'>
-                        <h1 className='text-xl md:text-3xl lg:text-5xl font-bold'>
+                        <h1 className='text-xl md:text-3xl lg:text-5xl mb-2 font-bold'>
                             Best sales and discounts
                         </h1>
                         <span className='text-lg md:text-2xl lg:text-3xl'>

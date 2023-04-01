@@ -1,22 +1,44 @@
 import React from 'react';
-import { HomePage } from '../pages';
+import {
+    CheckEmailPage, HomePage, LoginPage, PasswordResetPage, SignupPage, SignupFormPage,
+} from '../pages';
 import { Routes } from '../constans/Routes.enum';
 
 interface IRoute {
     path: Routes,
-    element: React.ReactNode
+    element: React.ReactElement
 }
 
 export const publicRoutes: IRoute[] = [
     {
         path: Routes.HOME,
-        element: <HomePage/>,
+        element: <HomePage />,
+    },
+    {
+        path: Routes.LOGIN,
+        element: <LoginPage />,
+    },
+    {
+        path: Routes.PASSWORD_RESET,
+        element: <PasswordResetPage onSendResetEmail={() => {}} />,
+    },
+    {
+        path: Routes.CHECK_EMAIL,
+        element: <CheckEmailPage />,
+    },
+    {
+        path: Routes.SIGNUP_METHOD,
+        element: <SignupPage />,
+    },
+    {
+        path: Routes.SIGNUP_FORM,
+        element: <SignupFormPage />,
     },
 ];
 
 export const privateRoutes: IRoute[] = [
     {
         path: Routes.HOME,
-        element: <HomePage/>,
+        element: <HomePage />,
     },
 ];

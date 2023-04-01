@@ -11,12 +11,12 @@ import searchIcon from '../../../assets/icons/search.svg';
 import styles from './Header.module.scss';
 
 const Header: FC = () => (
-    <header className='container mx-auto px-4 py-2'>
-        <Navbar fluid={true} rounded={true}>
+    <header className='container mx-auto px-4 pb-2 sticky top-0 z-10 mt-0'>
+        <Navbar fluid={true} className={styles.header}>
             <Navbar.Brand href='/'>
                 <img src={logo} className='h-9 mr-2' alt='Behoof Logo' />
                 <span className='self-center uppercase text-xl font-bold'>
-                    Behoof
+                        Behoof
                 </span>
             </Navbar.Brand>
             <div className='flex md:order-2'>
@@ -25,7 +25,7 @@ const Header: FC = () => (
                     inline={true}
                     label={
                         <Avatar
-                            className='mr-2 md:mr-0'
+                            className={`mr-2 md:mr-0 ${styles.avatar}`}
                             alt='User settings'
                             img='https://flowbite.com/docs/images/people/profile-picture-5.jpg'
                             rounded={true}
@@ -34,38 +34,44 @@ const Header: FC = () => (
                     <Dropdown.Header>
                         <span className='block text-sm'>Bonnie Green</span>
                         <span className='block truncate text-sm font-medium'>
-                            name@flowbite.com
+                                name@flowbite.com
                         </span>
                     </Dropdown.Header>
-                    <Dropdown.Item>English/USD</Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item>Dashboard</Dropdown.Item>
+                    <Dropdown.Item>Profile</Dropdown.Item>
+                    <Dropdown.Item>Subscription</Dropdown.Item>
                     <Dropdown.Item>Settings</Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Item>Sign out</Dropdown.Item>
                 </Dropdown>
                 <Navbar.Toggle />
             </div>
-            <Navbar.Collapse className={`${styles.nav}`}>
-                <div className={`block ${styles.input} md:w-1/2 mb-2 md:mb-0`}>
+            <Navbar.Collapse className={`${styles.collapse}`}>
+                <div
+                    className={`block ${styles.input} md:w-1/2 mb-2 md:mb-0`}>
                     <TextInput
                         id='search'
                         type='text'
                         placeholder='Search'
                         sizing='md'
                     />
-                    <img src={searchIcon} alt="search" />
+                    <img src={searchIcon} alt='search' />
                 </div>
                 <div className='block md:flex'>
                     <Navbar.Link href='/' className='w-screen md:w-auto'>
                         <div className='flex md:flex-col items-center'>
-                            <img src={trackIcon} className='h-6 mr-2 md:mr-0' />
+                            <img
+                                src={trackIcon}
+                                className='h-6 mr-2 md:mr-0'
+                            />
                             <span>Tracking</span>
                         </div>
                     </Navbar.Link>
                     <Navbar.Link href='/' className='w-screen md:w-auto'>
                         <div className='flex md:flex-col items-center'>
-                            <img src={heartIcon} className='h-6 mr-2 md:mr-0' />
+                            <img
+                                src={heartIcon}
+                                className='h-6 mr-2 md:mr-0'
+                            />
                             <span>Favorites</span>
                         </div>
                     </Navbar.Link>

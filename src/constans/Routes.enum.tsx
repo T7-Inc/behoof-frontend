@@ -1,3 +1,8 @@
 export enum Routes {
-    HOME = '/home',
+    HOME = '/',
+    LOGIN = '/login',
+    PASSWORD_RESET = '/login/reset-password',
+    CHECK_EMAIL = '/login/check-email',
+    SIGNUP_METHOD = '/signup',
+    SIGNUP_FORM = '/signup/form',
 }
