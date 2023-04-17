@@ -5,4 +5,5 @@ export enum Routes {
     CHECK_EMAIL = '/login/check-email',
     SIGNUP_METHOD = '/signup',
     SIGNUP_FORM = '/signup/form',
+    PRODUCT = '/product/:id',
 }
