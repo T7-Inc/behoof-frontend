@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    CheckEmailPage, HomePage, LoginPage, PasswordResetPage, SignupPage, SignupFormPage,
+    CheckEmailPage, HomePage, LoginPage, PasswordResetPage, SignupPage, SignupFormPage, ProductPage,
 } from '../pages';
 import { Routes } from '../constans/Routes.enum';
 
@@ -40,5 +40,9 @@ export const privateRoutes: IRoute[] = [
     {
         path: Routes.HOME,
         element: <HomePage />,
+    },
+    {
+        path: Routes.PRODUCT,
+        element: <ProductPage />,
     },
 ];

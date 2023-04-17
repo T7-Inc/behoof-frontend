@@ -4,7 +4,7 @@ import { privateRoutes, publicRoutes } from './routes';
 
 const AppRoutes: FC = () => {
     const [userResetPasswordEmail, setResetPasswordEmail] = useState<string>();
-    const isAuth = false;
+    const isAuth = true;
 
     let routes;
 
