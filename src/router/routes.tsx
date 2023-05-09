@@ -1,12 +1,19 @@
 import React from 'react';
 import {
-    CheckEmailPage, HomePage, LoginPage, PasswordResetPage, SignupPage, SignupFormPage, ProductPage,
+    CheckEmailPage,
+    HomePage,
+    LoginPage,
+    PasswordResetPage,
+    SignupPage,
+    SignupFormPage,
+    ProductPage,
+    SearchPage,
 } from '../pages';
 import { Routes } from '../constans/Routes.enum';
 
 interface IRoute {
-    path: Routes,
-    element: React.ReactElement
+    path: Routes;
+    element: React.ReactElement;
 }
 
 export const publicRoutes: IRoute[] = [
@@ -44,5 +51,9 @@ export const privateRoutes: IRoute[] = [
     {
         path: Routes.PRODUCT,
         element: <ProductPage />,
+    },
+    {
+        path: Routes.SEARCH,
+        element: <SearchPage />,
     },
 ];

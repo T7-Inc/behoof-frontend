@@ -6,4 +6,5 @@ export enum Routes {
     SIGNUP_METHOD = '/signup',
     SIGNUP_FORM = '/signup/form',
     PRODUCT = '/product/:id',
+    SEARCH = '/products'
 }
