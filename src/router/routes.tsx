@@ -9,6 +9,7 @@ import {
     ProductPage,
     SearchPage,
     FavoritesPage,
+    TrackingPage,
 } from '../pages';
 import { Routes } from '../constans/Routes.enum';
 
@@ -61,4 +62,5 @@ export const privateRoutes: IRoute[] = [
         path: Routes.FAVORITES,
         element: <FavoritesPage />,
     },
+    { path: Routes.TRACKING, element: <TrackingPage /> },
 ];

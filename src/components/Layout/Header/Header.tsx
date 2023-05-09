@@ -77,7 +77,7 @@ const Header: FC = () => {
                         <img src={searchIcon} alt='search' />
                     </div>
                     <div className='block md:flex'>
-                        <Navbar.Link href='/' className='w-screen md:w-auto'>
+                        <Navbar.Link href='/tracking' className='w-screen md:w-auto'>
                             <div className='flex md:flex-col items-center'>
                                 <img
                                     src={trackIcon}

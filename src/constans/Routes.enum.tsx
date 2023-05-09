@@ -8,4 +8,5 @@ export enum Routes {
     PRODUCT = '/product/:id',
     SEARCH = '/products',
     FAVORITES = '/favorites',
+    TRACKING = '/tracking',
 }
