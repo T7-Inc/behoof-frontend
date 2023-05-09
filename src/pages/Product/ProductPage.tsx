@@ -172,7 +172,7 @@ const ProductPage = () => {
                                 {product.tags.map((tag) => (
                                     <Badge
                                         key={tag}
-                                        className='mr-3'
+                                        className='mr-3 text-sm font-medium rounded-xl px-3 py-1'
                                         color='gray'>
                                         {tag}
                                     </Badge>
@@ -187,7 +187,7 @@ const ProductPage = () => {
                             <p className='text-base font-semibold mt-5'>
                                 Prices:
                             </p>
-                            <p className='text-3xl font-semibold text-gray-700'>
+                            <p className='text-2xl font-semibold text-gray-700'>
                                 ${product.priceMin} - ${product.priceMax}
                             </p>
                             <div className='flex mt-5'>
@@ -218,8 +218,8 @@ const ProductPage = () => {
                     </div>
                     <div className={`${styles.tabs} mt-5`}>
                         <Tabs.Group
-                            aria-label='Default tabs'
-                            style='default'
+                            aria-label='Tabs with underline'
+                            style='underline'
                             ref={tabsRef}
                             onActiveTabChange={(tab) => setActiveTab(tab)}>
                             <Tabs.Item active title={offersTabTitle}>
@@ -261,7 +261,9 @@ const ProductPage = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {product.reviews.map((review) => <Review key={review.id} review={review} />)}
+                                {product.reviews.map((review) => (
+                                    <Review key={review.id} review={review} />
+                                ))}
                             </Tabs.Item>
                         </Tabs.Group>
                     </div>
