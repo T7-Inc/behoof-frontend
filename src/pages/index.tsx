@@ -1,6 +1,7 @@
 export * from './Home/homePage';
 export * from './Product/ProductPage';
 export * from './Search/SearchPage';
+export * from './Favorites/FavoritesPage';
 export * from './Login/LoginPage';
 export * from './Login/PasswordResetPage';
 export * from './Login/CheckEmailPage';
