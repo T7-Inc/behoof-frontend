@@ -86,7 +86,9 @@ const Header: FC = () => {
                                 <span>Tracking</span>
                             </div>
                         </Navbar.Link>
-                        <Navbar.Link href='/' className='w-screen md:w-auto'>
+                        <Navbar.Link
+                            href='/favorites'
+                            className='w-screen md:w-auto'>
                             <div className='flex md:flex-col items-center'>
                                 <img
                                     src={heartIcon}
