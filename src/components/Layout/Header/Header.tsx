@@ -5,7 +5,7 @@ import {
     Navbar, Dropdown, Avatar, TextInput,
 } from 'flowbite-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NotificationIcon } from './NotificationIcon/NotificationIcon';
 
 import logo from '../../../assets/logo.svg';
@@ -14,11 +14,17 @@ import heartIcon from '../../../assets/icons/heart.svg';
 import searchIcon from '../../../assets/icons/search.svg';
 import styles from './Header.module.scss';
 import { RootState } from '../../../store';
+import { authActions } from '../../../store/slices/auth-slice';
 
 const Header: FC = () => {
     const [search, setSearch] = useState('');
     const navigate = useNavigate();
     const user = useSelector((state: RootState) => state.auth.user);
+    const dispatch = useDispatch();
+
+    const logoutHandler = () => {
+        dispatch(authActions.logout());
+    };
 
     const onChangeSearchHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
@@ -65,7 +71,7 @@ const Header: FC = () => {
                                 <Dropdown.Item>Subscription</Dropdown.Item>
                                 <Dropdown.Item>Settings</Dropdown.Item>
                                 <Dropdown.Divider />
-                                <Dropdown.Item>Sign out</Dropdown.Item>
+                                <Dropdown.Item onClick={logoutHandler}>Sign out</Dropdown.Item>
                             </Dropdown>
                             <Navbar.Toggle />
                         </div>
