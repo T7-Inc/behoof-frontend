@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Carousel } from 'flowbite-react';
+import { useNavigate } from 'react-router-dom';
 import { ProductBadge } from '../../components';
 
 import bannerImg1 from '../../assets/bannerImg/banner1.png';
@@ -10,8 +11,10 @@ import { IProductSearchResult } from '../../interface';
 
 const HomePage: FC = () => {
     const [products, setProducts] = useState<[IProductSearchResult]>();
+    const navigate = useNavigate();
 
     useEffect(() => {
+        navigate('/');
         axios
             .get(
                 `${process.env.REACT_APP_API_URL}/api/Products/Search?page=1&query=xiomi`,

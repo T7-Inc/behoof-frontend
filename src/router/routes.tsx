@@ -43,6 +43,10 @@ export const publicRoutes: IRoute[] = [
         path: Routes.SIGNUP_FORM,
         element: <SignupFormPage />,
     },
+    {
+        path: Routes.ANY,
+        element: <HomePage />,
+    },
 ];
 
 export const privateRoutes: IRoute[] = [
@@ -63,4 +67,8 @@ export const privateRoutes: IRoute[] = [
         element: <FavoritesPage />,
     },
     { path: Routes.TRACKING, element: <TrackingPage /> },
+    {
+        path: Routes.ANY,
+        element: <HomePage />,
+    },
 ];

@@ -9,4 +9,5 @@ export enum Routes {
     SEARCH = '/products',
     FAVORITES = '/favorites',
     TRACKING = '/tracking',
+    ANY = '*'
 }
