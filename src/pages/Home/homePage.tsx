@@ -6,18 +6,10 @@ import { ProductBadge } from '../../components';
 import bannerImg1 from '../../assets/bannerImg/banner1.png';
 import fireIcon from '../../assets/icons/fire.svg';
 import styles from './HomePage.module.scss';
-
-interface ProductSearchResult {
-    marketplaceIndex: number;
-    imageUrl: string;
-    title: string;
-    priceUSD: number;
-    productId: string;
-    url: string;
-}
+import { IProductSearchResult } from '../../interface';
 
 const HomePage: FC = () => {
-    const [products, setProducts] = useState<[ProductSearchResult]>();
+    const [products, setProducts] = useState<[IProductSearchResult]>();
 
     useEffect(() => {
         axios
