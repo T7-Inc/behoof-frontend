@@ -78,6 +78,7 @@ const HomePage: FC = () => {
                         <ProductBadge
                             className='mt-2.5'
                             key={product.productId}
+                            id={product.productId}
                             img={product.imageUrl}
                             title={product.title}
                             price={product.priceUSD}
