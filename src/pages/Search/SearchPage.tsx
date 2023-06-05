@@ -11,132 +11,26 @@ import {
 } from 'react';
 import { useParams } from 'react-router-dom';
 
+import axios from 'axios';
 import styles from './SearchPage.module.scss';
 import { ProductBadge } from '../../components';
+import { IProductSearchResult } from '../../interface';
 
-const products = [
+const categories = [
+    { name: 'Electronics', subCategories: ['Phones', 'TV', 'Laptops'] },
     {
-        id: 1,
-        name: 'Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon Ulzzang Large Capacity',
-        price: 2.4,
-        img:
-            'https://cdn.obag.filoblu.com/media/contentmanager/content/resized/767x/'
-            + 'contentmanager/content/img%20prodotto%20720x800px%20O%20bag%20unique%20FW21.jpg',
+        name: 'Fashion',
+        subCategories: ['Dresses', 'Pants', 'Shoes', 'Accessories'],
     },
     {
-        id: 2,
-        name: 'Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon Ulzzang Large Capacity',
-        price: 2.4,
-        img:
-            'https://ae01.alicdn.com/kf/S375262439133452aa3f46de6582bcc14f/Silicone-Strap-'
-            + 'For-Apple-Watch-Band-44mm-40mm-45mm-41mm-49mm-42mm-38mm-44-45-mm.jpg_220x220xz.jpg_.webp',
-    },
-    {
-        id: 3,
-        name: 'Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon Ulzzang Large Capacity',
-        price: 2.4,
-        img:
-            'https://ae01.alicdn.com/kf/S551ed267fcd44744a35cbe92777d7cec8/144-Style-Pokemon-'
-            + 'Figure-Toys-Anime-Pikachu-Action-Figure-Model-Ornamental-Decoration-Collect-Toys-For-'
-            + 'Children.jpg_220x220xz.jpg_.webp',
-    },
-    {
-        id: 4,
-        name: 'Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon Ulzzang Large Capacity',
-        price: 2.4,
-        img:
-            'https://cdn.obag.filoblu.com/media/contentmanager/content/resized/767x/'
-            + 'contentmanager/content/img%20prodotto%20720x800px%20O%20bag%20unique%20FW21.jpg',
-    },
-    {
-        id: 5,
-        name: 'Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon Ulzzang Large Capacity',
-        price: 2.4,
-        img:
-            'https://cdn.obag.filoblu.com/media/contentmanager/content/resized/767x/'
-            + 'contentmanager/content/img%20prodotto%20720x800px%20O%20bag%20unique%20FW21.jpg',
-    },
-    {
-        id: 6,
-        name: 'Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon Ulzzang Large Capacity',
-        price: 2.4,
-        img:
-            'https://cdn.obag.filoblu.com/media/contentmanager/content/resized/767x/'
-            + 'contentmanager/content/img%20prodotto%20720x800px%20O%20bag%20unique%20FW21.jpg',
-    },
-    {
-        id: 7,
-        name: 'Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon Ulzzang Large Capacity',
-        price: 2.4,
-        img:
-            'https://cdn.obag.filoblu.com/media/contentmanager/content/resized/767x/'
-            + 'contentmanager/content/img%20prodotto%20720x800px%20O%20bag%20unique%20FW21.jpg',
-    },
-    {
-        id: 8,
-        name: 'Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon Ulzzang Large Capacity',
-        price: 2.4,
-        img:
-            'https://cdn.obag.filoblu.com/media/contentmanager/content/resized/767x/'
-            + 'contentmanager/content/img%20prodotto%20720x800px%20O%20bag%20unique%20FW21.jpg',
-    },
-    {
-        id: 9,
-        name: 'Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon Ulzzang Large Capacity',
-        price: 2.4,
-        img:
-            'https://cdn.obag.filoblu.com/media/contentmanager/content/resized/767x/'
-            + 'contentmanager/content/img%20prodotto%20720x800px%20O%20bag%20unique%20FW21.jpg',
-    },
-    {
-        id: 10,
-        name: 'Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon Ulzzang Large Capacity',
-        price: 2.4,
-        img:
-            'https://cdn.obag.filoblu.com/media/contentmanager/content/resized/767x/'
-            + 'contentmanager/content/img%20prodotto%20720x800px%20O%20bag%20unique%20FW21.jpg',
-    },
-    {
-        id: 11,
-        name: 'Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon Ulzzang Large Capacity',
-        price: 2.4,
-        img:
-            'https://cdn.obag.filoblu.com/media/contentmanager/content/resized/767x/'
-            + 'contentmanager/content/img%20prodotto%20720x800px%20O%20bag%20unique%20FW21.jpg',
-    },
-    {
-        id: 12,
-        name: 'Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon Ulzzang Large Capacity',
-        price: 2.4,
-        img:
-            'https://cdn.obag.filoblu.com/media/contentmanager/content/resized/767x/'
-            + 'contentmanager/content/img%20prodotto%20720x800px%20O%20bag%20unique%20FW21.jpg',
-    },
-    {
-        id: 13,
-        name: 'Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon Ulzzang Large Capacity',
-        price: 2.4,
-        img:
-            'https://cdn.obag.filoblu.com/media/contentmanager/content/resized/767x/'
-            + 'contentmanager/content/img%20prodotto%20720x800px%20O%20bag%20unique%20FW21.jpg',
-    },
-    {
-        id: 14,
-        name: 'Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon Ulzzang Large Capacity',
-        price: 2.4,
-        img:
-            'https://cdn.obag.filoblu.com/media/contentmanager/content/resized/767x/'
-            + 'contentmanager/content/img%20prodotto%20720x800px%20O%20bag%20unique%20FW21.jpg',
+        name: 'Hobbies & sport',
+        subCategories: ['Musical instruments', 'Books', 'Sport equipment'],
     },
 ];
 
-interface ICategory {
-    name: string;
-    subCategories: Array<string>;
-}
-
 const SearchPage = () => {
     const { search } = useParams();
+    const [products, setProducts] = useState<any>();
 
     // Sorting options
     const [isSortPriceASC, setIsSortPriceASC] = useState<boolean>(true);
@@ -145,27 +39,29 @@ const SearchPage = () => {
     // Pagination
     const [currentPage, setCurrentPage] = useState<number>(1);
 
-    const [categories, setCategories] = useState<Array<ICategory>>([]);
     const [chosenCategories, setChosenCategories] = useState<Array<string>>([]);
 
     useEffect(() => {
-        // server request
-        setCategories([
-            { name: 'Electronics', subCategories: ['Phones', 'TV', 'Laptops'] },
-            {
-                name: 'Fashion',
-                subCategories: ['Dresses', 'Pants', 'Shoes', 'Accessories'],
-            },
-            {
-                name: 'Hobbies & sport',
-                subCategories: [
-                    'Musical instruments',
-                    'Books',
-                    'Sport equipment',
-                ],
-            },
-        ]);
-    }, [search, isSortPriceASC, chosenCategories]);
+        axios
+            .get(
+                `${process.env.REACT_APP_API_URL}/api/Products/Search?page=${currentPage}&query=xiomi`,
+            )
+            .then((res) => {
+                setProducts(res.data);
+                window.scrollTo(0, 0);
+            });
+    }, [chosenCategories, search, currentPage]);
+
+    useEffect(() => {
+        if (!products) return;
+        setProducts((prev: any) => {
+            const newArr = [...prev];
+            newArr.sort((item1, item2) => (isSortPriceASC
+                ? item1.priceUSD - item2.priceUSD
+                : (item1.priceUSD - item2.priceUSD) * -1));
+            return newArr;
+        });
+    }, [isSortPriceASC]);
 
     const onCategoryChange = (e: MouseEvent<HTMLInputElement>) => {
         setChosenCategories((prev) => {
@@ -227,13 +123,14 @@ const SearchPage = () => {
                 </div>
 
                 <div className={styles.grid}>
-                    {products.map((product) => (
+                    {products?.map((product: IProductSearchResult) => (
                         <ProductBadge
                             className='mt-2.5'
-                            key={product.id}
-                            img={product.img}
-                            title={product.name}
-                            price={product.price}
+                            key={product.productId}
+                            id={product.productId}
+                            img={product.imageUrl}
+                            title={product.title}
+                            price={product.priceUSD}
                         />
                     ))}
                 </div>
@@ -241,7 +138,7 @@ const SearchPage = () => {
                 <Pagination
                     className={`${styles.pagination} mt-5 flex justify-center`}
                     currentPage={currentPage}
-                    totalPages={100}
+                    totalPages={5}
                     onPageChange={onPageChange}
                 />
             </div>
