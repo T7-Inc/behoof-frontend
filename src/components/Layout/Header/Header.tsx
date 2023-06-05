@@ -4,7 +4,8 @@ import {
 import {
     Navbar, Dropdown, Avatar, TextInput,
 } from 'flowbite-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { NotificationIcon } from './NotificationIcon/NotificationIcon';
 
 import logo from '../../../assets/logo.svg';
@@ -12,10 +13,12 @@ import trackIcon from '../../../assets/icons/tracking.svg';
 import heartIcon from '../../../assets/icons/heart.svg';
 import searchIcon from '../../../assets/icons/search.svg';
 import styles from './Header.module.scss';
+import { RootState } from '../../../store';
 
 const Header: FC = () => {
     const [search, setSearch] = useState('');
     const navigate = useNavigate();
+    const isLogged = useSelector((state: RootState) => state.auth.user) !== null;
 
     const onChangeSearchHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
@@ -36,75 +39,89 @@ const Header: FC = () => {
                         Behoof
                     </span>
                 </Navbar.Brand>
-                <div className='flex md:order-2'>
-                    <Dropdown
-                        arrowIcon={false}
-                        inline={true}
-                        label={
-                            <Avatar
-                                className={`mr-2 md:mr-0 ${styles.avatar}`}
-                                alt='User settings'
-                                img='https://flowbite.com/docs/images/people/profile-picture-5.jpg'
-                                rounded={true}
-                            />
-                        }>
-                        <Dropdown.Header>
-                            <span className='block text-sm'>Bonnie Green</span>
-                            <span className='block truncate text-sm font-medium'>
-                                name@flowbite.com
-                            </span>
-                        </Dropdown.Header>
-                        <Dropdown.Item>Profile</Dropdown.Item>
-                        <Dropdown.Item>Subscription</Dropdown.Item>
-                        <Dropdown.Item>Settings</Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item>Sign out</Dropdown.Item>
-                    </Dropdown>
-                    <Navbar.Toggle />
-                </div>
-                <Navbar.Collapse className={`${styles.collapse}`}>
-                    <div
-                        className={`block ${styles.input} md:w-1/2 mb-2 md:mb-0`}>
-                        <TextInput
-                            id='search'
-                            type='text'
-                            placeholder='Search'
-                            sizing='md'
-                            value={search}
-                            onChange={onChangeSearchHandler}
-                            onKeyDown={onSubmitHandler}
-                        />
-                        <img src={searchIcon} alt='search' />
-                    </div>
-                    <div className='block md:flex'>
-                        <Navbar.Link href='/tracking' className='w-screen md:w-auto'>
-                            <div className='flex md:flex-col items-center'>
-                                <img
-                                    src={trackIcon}
-                                    className='h-6 mr-2 md:mr-0'
+                {isLogged && (
+                    <>
+                        <div className='flex md:order-2'>
+                            <Dropdown
+                                arrowIcon={false}
+                                inline={true}
+                                label={
+                                    <Avatar
+                                        className={`mr-2 md:mr-0 ${styles.avatar}`}
+                                        alt='User settings'
+                                        img='https://flowbite.com/docs/images/people/profile-picture-5.jpg'
+                                        rounded={true}
+                                    />
+                                }>
+                                <Dropdown.Header>
+                                    <span className='block text-sm'>
+                                        Bonnie Green
+                                    </span>
+                                    <span className='block truncate text-sm font-medium'>
+                                        name@flowbite.com
+                                    </span>
+                                </Dropdown.Header>
+                                <Dropdown.Item>Profile</Dropdown.Item>
+                                <Dropdown.Item>Subscription</Dropdown.Item>
+                                <Dropdown.Item>Settings</Dropdown.Item>
+                                <Dropdown.Divider />
+                                <Dropdown.Item>Sign out</Dropdown.Item>
+                            </Dropdown>
+                            <Navbar.Toggle />
+                        </div>
+                        <Navbar.Collapse className={`${styles.collapse}`}>
+                            <div
+                                className={`block ${styles.input} md:w-1/2 mb-2 md:mb-0`}>
+                                <TextInput
+                                    id='search'
+                                    type='text'
+                                    placeholder='Search'
+                                    sizing='md'
+                                    value={search}
+                                    onChange={onChangeSearchHandler}
+                                    onKeyDown={onSubmitHandler}
                                 />
-                                <span>Tracking</span>
+                                <img src={searchIcon} alt='search' />
                             </div>
-                        </Navbar.Link>
-                        <Navbar.Link
-                            href='/favorites'
-                            className='w-screen md:w-auto'>
-                            <div className='flex md:flex-col items-center'>
-                                <img
-                                    src={heartIcon}
-                                    className='h-6 mr-2 md:mr-0'
-                                />
-                                <span>Favorites</span>
+                            <div className='block md:flex'>
+                                <Navbar.Link
+                                    href='/tracking'
+                                    className='w-screen md:w-auto'>
+                                    <div className='flex md:flex-col items-center'>
+                                        <img
+                                            src={trackIcon}
+                                            className='h-6 mr-2 md:mr-0'
+                                        />
+                                        <span>Tracking</span>
+                                    </div>
+                                </Navbar.Link>
+                                <Navbar.Link
+                                    href='/favorites'
+                                    className='w-screen md:w-auto'>
+                                    <div className='flex md:flex-col items-center'>
+                                        <img
+                                            src={heartIcon}
+                                            className='h-6 mr-2 md:mr-0'
+                                        />
+                                        <span>Favorites</span>
+                                    </div>
+                                </Navbar.Link>
+                                <Navbar.Link
+                                    href='/'
+                                    className='w-screen md:w-auto'>
+                                    <div className='flex md:flex-col items-center'>
+                                        <NotificationIcon count={1} />
+                                        <span>Notifications</span>
+                                    </div>
+                                </Navbar.Link>
                             </div>
-                        </Navbar.Link>
-                        <Navbar.Link href='/' className='w-screen md:w-auto'>
-                            <div className='flex md:flex-col items-center'>
-                                <NotificationIcon count={1} />
-                                <span>Notifications</span>
-                            </div>
-                        </Navbar.Link>
-                    </div>
-                </Navbar.Collapse>
+                        </Navbar.Collapse>
+                    </>
+                )}
+                {!isLogged && <div>
+                    <Link to="login" className='mr-5'>Login</Link>
+                    <Link to="signup">Sign Up</Link>
+                </div>}
             </Navbar>
         </header>
     );

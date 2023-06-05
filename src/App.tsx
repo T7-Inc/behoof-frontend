@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Footer, Header } from './components';
 
 import AppRoutes from './router/AppRoutes';
 
 function App() {
     const [isAuthPage, setIsAuthPage] = useState<boolean>(false);
-    const page = window.location.pathname;
+    const page = useLocation();
 
     useEffect(() => {
-        if (page.includes('login') || page.includes('signup')) {
+        if (
+            page.pathname.includes('login')
+            || page.pathname.includes('signup')
+        ) {
             setIsAuthPage(true);
         } else setIsAuthPage(false);
-    }, [page]);
+    }, [page.pathname]);
 
     return (
         <div>

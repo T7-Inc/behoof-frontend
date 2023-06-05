@@ -1,10 +1,12 @@
 import React, { FC, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
+import { RootState } from '../store';
 import { privateRoutes, publicRoutes } from './routes';
 
 const AppRoutes: FC = () => {
     const [userResetPasswordEmail, setResetPasswordEmail] = useState<string>();
-    const isAuth = true;
+    const isAuth = useSelector((state: RootState) => state.auth.user) !== null;
 
     let routes;
 
