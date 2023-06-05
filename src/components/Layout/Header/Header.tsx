@@ -18,7 +18,7 @@ import { RootState } from '../../../store';
 const Header: FC = () => {
     const [search, setSearch] = useState('');
     const navigate = useNavigate();
-    const isLogged = useSelector((state: RootState) => state.auth.user) !== null;
+    const user = useSelector((state: RootState) => state.auth.user);
 
     const onChangeSearchHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
@@ -39,7 +39,7 @@ const Header: FC = () => {
                         Behoof
                     </span>
                 </Navbar.Brand>
-                {isLogged && (
+                {user && (
                     <>
                         <div className='flex md:order-2'>
                             <Dropdown
@@ -49,16 +49,16 @@ const Header: FC = () => {
                                     <Avatar
                                         className={`mr-2 md:mr-0 ${styles.avatar}`}
                                         alt='User settings'
-                                        img='https://flowbite.com/docs/images/people/profile-picture-5.jpg'
+                                        img='https://ionicframework.com/docs/img/demos/avatar.svg'
                                         rounded={true}
                                     />
                                 }>
                                 <Dropdown.Header>
                                     <span className='block text-sm'>
-                                        Bonnie Green
+                                        {user.firstName} {user.lastName}
                                     </span>
                                     <span className='block truncate text-sm font-medium'>
-                                        name@flowbite.com
+                                        {user.email}
                                     </span>
                                 </Dropdown.Header>
                                 <Dropdown.Item>Profile</Dropdown.Item>
@@ -118,10 +118,14 @@ const Header: FC = () => {
                         </Navbar.Collapse>
                     </>
                 )}
-                {!isLogged && <div>
-                    <Link to="login" className='mr-5'>Login</Link>
-                    <Link to="signup">Sign Up</Link>
-                </div>}
+                {!user && (
+                    <div>
+                        <Link to='login' className='mr-5'>
+                            Login
+                        </Link>
+                        <Link to='signup'>Sign Up</Link>
+                    </div>
+                )}
             </Navbar>
         </header>
     );
