@@ -1,10 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+interface IUser {
+    email: string;
+    firstName: string;
+    lastName: string;
+}
+
+interface IInitialState {
+    user: IUser | null;
+}
+
+const initialState: IInitialState = {
+    user: null,
+};
+
 const authSlice = createSlice({
     name: 'auth',
-    initialState: {
-        user: null,
-    },
+    initialState,
     reducers: {
         logout(state) {
             state.user = null;
