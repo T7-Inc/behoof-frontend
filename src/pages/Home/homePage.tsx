@@ -23,13 +23,6 @@ const HomePage: FC = () => {
         axios
             .get(
                 `${process.env.REACT_APP_API_URL}/api/Products/Search?page=1&query=xiomi`,
-                {
-                    headers: {
-                        'Access-Control-Allow-Origin': 'http://localhost:3000',
-                        'Access-Control-Allow-Methods':
-                            'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                    },
-                },
             )
             .then((res) => {
                 setProducts(res.data);
