@@ -9,22 +9,21 @@ type BriefType = 'favorite' | 'tracking';
 const ProductBrief = (props: {
     type: BriefType;
     className?: string;
-    product: { tracking: boolean };
+    id: string;
+    title: string;
+    img: string;
+    market: number;
+    tracking?: boolean;
+    onDelete: any;
 }) => (
     <div className={`flex ${props.className}`}>
-        <img
-            className='h-32 w-32 rounded-2xl mr-5'
-            src={
-                'https://cdn.obag.filoblu.com/media/contentmanager/content/resized/767x/'
-                + 'contentmanager/content/img%20prodotto%20720x800px%20O%20bag%20unique%20FW21.jpg'
-            }
-        />
+        <img className='h-32 w-32 rounded-2xl mr-5' src={props.img} />
         <div className='flex flex-col justify-between'>
             <div>
                 <div className='flex justify-between mt-2 items-center'>
                     <Link
                         className='text-sm font-semibold text-blue-700 flex items-center'
-                        to='/product/1'>
+                        to={`/product/${props.id}?market=${props.market}`}>
                         Product link
                         <IoIosArrowForward />
                     </Link>
@@ -35,8 +34,7 @@ const ProductBrief = (props: {
                     )}
                 </div>
                 <h1 className='font-semibold mt-3'>
-                    Japanese Anime Kawaii Y2k Canvas Bag Cute Women Bag Cartoon
-                    Ulzzang Large Capacity
+                    {props.title}
                 </h1>
             </div>
             <div className='mb-2'>
@@ -45,7 +43,8 @@ const ProductBrief = (props: {
                         className={
                             'flex text-red-600 border border-solid '
                             + 'border-gray-300 rounded-xl px-3 py-2 hover:bg-red-50 hover:border-red-500'
-                        }>
+                        }
+                        onClick={props.onDelete}>
                         <HiOutlineTrash />
                         <span className='ml-2 text-xs font-semibold'>
                             Remove
@@ -59,7 +58,7 @@ const ProductBrief = (props: {
                                 Prices:{' '}
                                 <span
                                     className={`${
-                                        props.product.tracking
+                                        props.tracking
                                             ? 'text-blue-700'
                                             : 'text-cool-gray'
                                     }`}>
@@ -70,7 +69,7 @@ const ProductBrief = (props: {
                                 In stock:{' '}
                                 <span
                                     className={`${
-                                        props.product.tracking
+                                        props.tracking
                                             ? 'text-blue-700'
                                             : 'text-cool-gray'
                                     }`}>
@@ -79,9 +78,15 @@ const ProductBrief = (props: {
                             </Badge>
                         </div>
                         <div className='flex items-center'>
-                            <span className='text-sm text-cool-gray mr-2'>Tracking: </span>
+                            <span className='text-sm text-cool-gray mr-2'>
+                                Tracking:{' '}
+                            </span>
                             <ToggleSwitch
-                                checked={props.product.tracking}
+                                checked={
+                                    props.tracking
+                                        ? props.tracking
+                                        : false
+                                }
                                 label=''
                                 onChange={() => {}}
                             />

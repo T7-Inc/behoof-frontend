@@ -1,10 +1,17 @@
 // import styles from './FavoritesPage.module.scss';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { ProductBrief } from '../../components';
+import { RootState } from '../../store';
+import { favActions } from '../../store/slices/favorite-slice';
 
 const FavoritesPage = () => {
-    // product placeholder
-    const products = Array(5).fill(0);
+    const products = useSelector((state: RootState) => state.fav.products);
+    const dispatch = useDispatch();
+
+    const deleteFavHandler = (id: string) => {
+        dispatch(favActions.removeFav(id));
+    };
 
     return (
         <div className='container mx-auto px-4 mt-5'>
@@ -14,7 +21,7 @@ const FavoritesPage = () => {
             </p>
             <div className='bg-blue-50 py-5 px-5 rounded-xl mt-4'>
                 <h2 className='font-semibold'>
-                    Items number: <span className='text-blue-700'>16</span>
+                    Items number: <span className='text-blue-700'>{products.length}</span>
                 </h2>
             </div>
             <div className='flex flex-wrap mt-2 justify-between'>
@@ -23,7 +30,11 @@ const FavoritesPage = () => {
                         key={ind}
                         className='mt-4 w-5/12'
                         type='favorite'
-                        product={{ tracking: Math.random() < 0.5 }}
+                        id={val.id}
+                        title={val.title}
+                        img={val.img}
+                        market={val.market}
+                        onDelete={deleteFavHandler.bind(null, val.id)}
                     />
                 ))}
             </div>
