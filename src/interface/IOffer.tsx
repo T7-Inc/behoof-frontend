@@ -1,11 +1,11 @@
-import { ProductStatuses } from '../constans';
-import { IShop } from './IShop';
-
 export interface IOffer {
-    id: number;
-    shop: IShop;
-    shippingPrice: number;
-    price: number;
-    status: ProductStatuses;
-    url: string;
+    imgUrl: string;
+    sellerRating: string | null;
+    shippingFrom: string | null;
+    shippingTo: string | null;
+    shippingPrice: number | null;
+    productPrice: number | null;
+    totalPrice: number | null;
+    available: boolean | null;
+    sellerUrl: string;
 }
