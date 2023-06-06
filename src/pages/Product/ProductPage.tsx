@@ -15,6 +15,7 @@ import starOutlinedSVG from '../../assets/icons/star-outline.svg';
 import styles from './ProductPage.module.scss';
 import { RootState } from '../../store';
 import { favActions } from '../../store/slices/favorite-slice';
+import { trackActions } from '../../store/slices/track-slice';
 
 const ProductPage = () => {
     const { id } = useParams();
@@ -27,6 +28,9 @@ const ProductPage = () => {
 
     const dispatch = useDispatch();
     const isFav = useSelector((state: RootState) => state.fav.products).filter(
+        (i) => i.id === id,
+    ).length > 0;
+    const isTrack = useSelector((state: RootState) => state.track.products).filter(
         (i) => i.id === id,
     ).length > 0;
 
@@ -49,16 +53,19 @@ const ProductPage = () => {
 
     useEffect(() => {
         if (activeTab === 1 && offers.length === 0) {
-            axios.get(
-                `${
-                    process.env.REACT_APP_API_URL
-                }/api/Products/GetOffers?ProductImageUrl=${encodeURIComponent(
-                    product.images[0],
-                )}&Region=US`,
-            ).then((res) => {
-                console.log(res.data);
-                setOffers(res.data);
-            }).catch((err) => alert(err.message));
+            axios
+                .get(
+                    `${
+                        process.env.REACT_APP_API_URL
+                    }/api/Products/GetOffers?ProductImageUrl=${encodeURIComponent(
+                        product.images[0],
+                    )}&Region=US`,
+                )
+                .then((res) => {
+                    console.log(res.data);
+                    setOffers(res.data);
+                })
+                .catch((err) => alert(err.message));
         }
     }, [activeTab]);
 
@@ -75,6 +82,17 @@ const ProductPage = () => {
                 }),
             );
         }
+    };
+
+    const trackHandler = () => {
+        dispatch(
+            trackActions.addTrack({
+                id,
+                title: product.title,
+                img: product.images[0],
+                market: searchParams.get('market'),
+            }),
+        );
     };
 
     const offersTabTitle = (
@@ -110,8 +128,12 @@ const ProductPage = () => {
                                 {product.title}
                             </h1>
                             <div className='flex mt-5'>
-                                <Button className='bg-blue mr-2' size='lg'>
-                                    Track product
+                                <Button
+                                    className='bg-blue mr-2'
+                                    size='lg'
+                                    onClick={trackHandler}
+                                    disabled={isTrack}>
+                                    {isTrack ? 'Tracking' : 'Track product'}
                                 </Button>
                                 <Button
                                     color='light'
