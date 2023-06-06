@@ -11,7 +11,11 @@ interface IInitialState {
 }
 
 const initialState: IInitialState = {
-    user: null,
+    user: {
+        email: 'test@test.com',
+        firstName: 'Ivan',
+        lastName: 'Ishchenko',
+    },
 };
 
 const authSlice = createSlice({
