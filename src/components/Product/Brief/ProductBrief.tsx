@@ -33,9 +33,7 @@ const ProductBrief = (props: {
                         </span>
                     )}
                 </div>
-                <h1 className='font-semibold mt-3'>
-                    {props.title}
-                </h1>
+                <h1 className='font-semibold mt-3'>{props.title}</h1>
             </div>
             <div className='mb-2'>
                 {props.type === 'favorite' && (
@@ -54,7 +52,7 @@ const ProductBrief = (props: {
                 {props.type === 'tracking' && (
                     <div className='flex justify-between items-center'>
                         <div className='flex'>
-                            <Badge color='gray' className='mr-2'>
+                            {/* <Badge color='gray' className='mr-2'>
                                 Prices:{' '}
                                 <span
                                     className={`${
@@ -64,7 +62,7 @@ const ProductBrief = (props: {
                                     }`}>
                                     $20-$25
                                 </span>
-                            </Badge>
+                            </Badge> */}
                             <Badge color='gray'>
                                 In stock:{' '}
                                 <span
@@ -82,13 +80,9 @@ const ProductBrief = (props: {
                                 Tracking:{' '}
                             </span>
                             <ToggleSwitch
-                                checked={
-                                    props.tracking
-                                        ? props.tracking
-                                        : false
-                                }
+                                checked={true}
                                 label=''
-                                onChange={() => {}}
+                                onChange={props.onDelete}
                             />
                         </div>
                     </div>
