@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Carousel } from 'flowbite-react';
+import { Carousel, Spinner } from 'flowbite-react';
 import { useNavigate } from 'react-router-dom';
 import { ProductBadge } from '../../components';
 
@@ -12,16 +12,18 @@ import { IProductSearchResult } from '../../interface';
 const HomePage: FC = () => {
     const [products, setProducts] = useState<[IProductSearchResult]>();
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
         navigate('/');
+        setIsLoading(true);
         axios
             .get(
                 `${process.env.REACT_APP_API_URL}/api/Products/Search?page=1&query=xiomi`,
             )
             .then((res) => {
                 setProducts(res.data);
-            });
+            }).finally(() => setIsLoading(false));
     }, []);
 
     return (
@@ -68,18 +70,27 @@ const HomePage: FC = () => {
                     <h1 className='text-2xl font-semibold mr-2'>Hot and new</h1>
                     <img src={fireIcon} alt='hot' />
                 </div>
-                <div className={styles.grid}>
-                    {products?.map((product) => (
-                        <ProductBadge
-                            className='mt-2.5'
-                            key={product.productId}
-                            id={product.productId}
-                            img={product.imageUrl}
-                            title={product.title}
-                            price={product.priceUSD}
-                            marketplace={product.marketplaceIndex}
+                <div className='flex justify-center mt-5'>
+                    {isLoading && (
+                        <Spinner
+                            aria-label='Extra large spinner example'
+                            size='xl'
                         />
-                    ))}
+                    )}
+                </div>
+                <div className={styles.grid}>
+                    {!isLoading
+                        && products?.map((product) => (
+                            <ProductBadge
+                                className='mt-2.5'
+                                key={product.productId}
+                                id={product.productId}
+                                img={product.imageUrl}
+                                title={product.title}
+                                price={product.priceUSD}
+                                marketplace={product.marketplaceIndex}
+                            />
+                        ))}
                 </div>
             </section>
         </div>
