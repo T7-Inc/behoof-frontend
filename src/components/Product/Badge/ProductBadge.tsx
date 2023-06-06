@@ -7,8 +7,9 @@ const ProductBadge = (props: {
     title: string;
     price: number;
     className: string;
+    marketplace: number
 }) => (
-    <Link to={`product/${props.id}`}
+    <Link to={`product/${props.id}?market=${props.marketplace}`}
         className={`${props.className} w-48 cursor-pointer ${styles.productBadge}`}>
         <div className='h-48 w-48 overflow-hidden rounded-2xl border border-neutral-200 border-solid'>
             <img

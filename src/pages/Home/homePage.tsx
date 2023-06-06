@@ -77,6 +77,7 @@ const HomePage: FC = () => {
                             img={product.imageUrl}
                             title={product.title}
                             price={product.priceUSD}
+                            marketplace={product.marketplaceIndex}
                         />
                     ))}
                 </div>
