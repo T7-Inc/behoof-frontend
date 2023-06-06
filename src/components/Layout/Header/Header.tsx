@@ -6,7 +6,6 @@ import {
 } from 'flowbite-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { NotificationIcon } from './NotificationIcon/NotificationIcon';
 
 import logo from '../../../assets/logo.svg';
 import trackIcon from '../../../assets/icons/tracking.svg';
@@ -39,12 +38,12 @@ const Header: FC = () => {
     return (
         <header className='container mx-auto px-4 pb-2 sticky top-0 z-10 mt-0'>
             <Navbar fluid={true} className={styles.header}>
-                <Navbar.Brand href='/'>
+                <Link to='/' className='flex items-center'>
                     <img src={logo} className='h-9 mr-2' alt='Behoof Logo' />
                     <span className='self-center uppercase text-xl font-bold'>
                         Behoof
                     </span>
-                </Navbar.Brand>
+                </Link>
                 {user && (
                     <>
                         <div className='flex md:order-2'>
@@ -90,9 +89,9 @@ const Header: FC = () => {
                                 <img src={searchIcon} alt='search' />
                             </div>
                             <div className='block md:flex'>
-                                <Navbar.Link
-                                    href='/tracking'
-                                    className='w-screen md:w-auto'>
+                                <Link
+                                    to='/tracking'
+                                    className='w-screen md:w-auto mr-2'>
                                     <div className='flex md:flex-col items-center'>
                                         <img
                                             src={trackIcon}
@@ -100,9 +99,9 @@ const Header: FC = () => {
                                         />
                                         <span>Tracking</span>
                                     </div>
-                                </Navbar.Link>
-                                <Navbar.Link
-                                    href='/favorites'
+                                </Link>
+                                <Link
+                                    to='/favorites'
                                     className='w-screen md:w-auto'>
                                     <div className='flex md:flex-col items-center'>
                                         <img
@@ -111,15 +110,7 @@ const Header: FC = () => {
                                         />
                                         <span>Favorites</span>
                                     </div>
-                                </Navbar.Link>
-                                <Navbar.Link
-                                    href='/'
-                                    className='w-screen md:w-auto'>
-                                    <div className='flex md:flex-col items-center'>
-                                        <NotificationIcon count={1} />
-                                        <span>Notifications</span>
-                                    </div>
-                                </Navbar.Link>
+                                </Link>
                             </div>
                         </Navbar.Collapse>
                     </>
