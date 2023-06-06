@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authSlice from './slices/auth-slice';
 import favSlice from './slices/favorite-slice';
+import trackSlice from './slices/track-slice';
 
 export const store = configureStore({
     reducer: {
         auth: authSlice.reducer,
         fav: favSlice.reducer,
+        track: trackSlice.reducer,
     },
 });
 
