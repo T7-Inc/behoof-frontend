@@ -1,0 +1,13 @@
+.productPage {
+  .tabs {
+    & > div > div > button {
+      flex-grow: 1;
+      border-style: solid;
+    }
+
+    td > span {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
