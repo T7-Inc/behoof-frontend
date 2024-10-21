@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./AdminPage.module.scss";
+import Statistics from "../../components";
 
 const AdminPage: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ const AdminPage: React.FC = () => {
       <main className={styles.mainContent}>
         <section className={styles.stats}>
           <h2>Statistics</h2>
-          <p>Here you can see the website's key metrics.</p>
+          <Statistics />
         </section>
         <section className={styles.actions}>
           <h2>Actions</h2>
