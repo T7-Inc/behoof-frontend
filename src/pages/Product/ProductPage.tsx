@@ -24,6 +24,12 @@ const ProductPage = () => {
   const tabsRef = useRef<TabsRef>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  // Track a custom event
+  TrackingService.trackCustomEvent({
+    eventType: "product-view",
+    eventData: { productId: id, category: product.category, name: product.name },
+  });
+
   const dispatch = useDispatch();
   const isFav =
     useSelector((state: RootState) => state.fav.products).filter(
